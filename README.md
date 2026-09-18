@@ -18,8 +18,8 @@ O objetivo deste espaço é demonstrar a aplicação prática e real dos conceit
 
 ```text
 📦 Projetos-LP2
- ┣ 📂 BatalhaRobos                     # Simulação/Jogo aplicando conceitos de Orientação a Objetos (com JavaDoc)
- ┣ 📂 ProjetoAlunoEmSala               # Modelagem do comportamento e gestão de alunos no ambiente acadêmico
- ┣ 📂 ProjetoEstudanteReflexaoExcecao  # Aplicação prática de manipulação de Exceções e uso de Reflexão
- ┣ 📂 ProjetoFinalMedicao              # Projeto consolidando os tópicos da disciplina com lógicas de medição
- ┗ 📜 README.md                        # Este arquivo de documentação
+ ┣ 📂 BatalhaRobos                   
+ ┣ 📂 ProjetoAlunoEmSala               
+ ┣ 📂 ProjetoEstudanteReflexaoExcecao  
+ ┣ 📂 ProjetoFinalMedicao             
+ ┗ 📜 README.md                       
