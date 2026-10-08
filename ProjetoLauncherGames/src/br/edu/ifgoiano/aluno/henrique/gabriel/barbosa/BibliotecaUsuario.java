@@ -47,7 +47,7 @@ public class BibliotecaUsuario {
         System.out.printf("[JOGAR] Iniciando '%s'... Boa jogatina!%n", jogo.getTitulo());
     }
 
-    public void ganharConquita(String nomeConquista) {
+    public void ganharConquitas(String nomeConquista) {
         boolean adicionandoConquista = conquistasDesbloqueadas.add(nomeConquista);
         if (adicionandoConquista) {
             System.out.printf("[CONQUISTA] Nova conquista desbloqueada: '%s'!%n", nomeConquista);
