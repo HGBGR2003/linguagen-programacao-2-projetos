@@ -15,7 +15,7 @@ public class LauncherMain {
         Jogo eldenRing = new Jogo("ER2022", "Elden Ring", 99.90, true);
 
         System.out.println("------------------------------------------------------------");
-        System.out.println("CENARIO 1: Compra de jogos (SaldoInsuficienteException)");
+        System.out.println("CENARIO 1: Compra de jogos");
         System.out.println("------------------------------------------------------------");
         try {
             biblioteca.comprarJogo(cyberpunk);
@@ -28,7 +28,7 @@ public class LauncherMain {
         System.out.println();
 
         System.out.println("------------------------------------------------------------");
-        System.out.println("CENARIO 2: Jogar sem instalar (JogoNaoInstaladoException)");
+        System.out.println("CENARIO 2: Jogar sem instalar");
         System.out.println("------------------------------------------------------------");
         biblioteca.getCatalogosJogos().put(eldenRing.getId(), eldenRing);
         try {
@@ -52,7 +52,7 @@ public class LauncherMain {
         System.out.println();
 
         System.out.println("------------------------------------------------------------");
-        System.out.println("CENARIO 3: Conquistas (Set - sem duplicatas)");
+        System.out.println("CENARIO 3: Conquistas");
         System.out.println("------------------------------------------------------------");
 
         biblioteca.ganharConquitas("Primeira Vitoria");
@@ -63,7 +63,7 @@ public class LauncherMain {
 
         System.out.println();
         System.out.println("------------------------------------------------------------");
-        System.out.println("CENARIO 4: Historico de jogos (List - com duplicatas)");
+        System.out.println("CENARIO 4: Historico de jogos");
         System.out.println("------------------------------------------------------------");
         try {
             biblioteca.jogar("ER2022");
