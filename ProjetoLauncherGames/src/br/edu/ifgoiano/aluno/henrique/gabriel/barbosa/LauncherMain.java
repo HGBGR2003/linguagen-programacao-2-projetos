@@ -58,7 +58,7 @@ public class LauncherMain {
         biblioteca.ganharConquitas("Primeira Vitoria");
         biblioteca.ganharConquitas("Explorador de Mundos");
         biblioteca.ganharConquitas("Primeira Vitoria");
-        biblioteca.ganharConquitas("Cacador de Trofeus");
+        biblioteca.ganharConquitas("Caçador de Trofeus");
         biblioteca.ganharConquitas("Explorador de Mundos");
 
         System.out.println();
@@ -88,7 +88,7 @@ public class LauncherMain {
         System.out.printf("Usuario: %s%n", biblioteca.getNomeUsuario());
         System.out.printf("Saldo restante: R$%.2f%n", biblioteca.getSaldo());
         System.out.printf("Jogos no catalogo: %d%n", biblioteca.getCatalogosJogos().size());
-        System.out.printf("Sessoes jogadas: %d%n", biblioteca.getHistoricoJogados().size());
+        System.out.printf("Sessões jogadas: %d%n", biblioteca.getHistoricoJogados().size());
         System.out.printf("Conquistas unicas: %s%n", biblioteca.getConquistasDesbloqueadas());
         System.out.println("=============================================================");
 

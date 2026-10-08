@@ -40,7 +40,7 @@ public class BibliotecaUsuario {
 
         if (!jogo.isInstalado()) {
             throw new JogoNaoInstaladoException("O jogo '" + jogo.getTitulo() + "' (id: " + idJogo
-                    + ") nao esta instalado. Faca o download primeiro.");
+                    + ") nao esta instalado. Faça o download primeiro.");
         }
 
         historicoJogados.add(jogo);
