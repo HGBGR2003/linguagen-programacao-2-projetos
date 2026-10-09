@@ -21,5 +21,6 @@ O objetivo deste espaço é demonstrar a aplicação prática e real dos conceit
  ┣ 📂 BatalhaRobos                   
  ┣ 📂 ProjetoAlunoEmSala               
  ┣ 📂 ProjetoEstudanteReflexaoExcecao  
- ┣ 📂 ProjetoFinalMedicao             
+ ┣ 📂 ProjetoFinalMedicao
+ ┣ 📂 ProjetoLauncherGamesSteam
  ┗ 📜 README.md                       
