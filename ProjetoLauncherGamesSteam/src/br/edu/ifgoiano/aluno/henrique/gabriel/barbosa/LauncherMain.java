@@ -1,0 +1,128 @@
+package br.edu.ifgoiano.aluno.henrique.gabriel.barbosa;
+
+/**
+ * Ponto de entrada (classe executável) da aplicação de demonstração do Game Launcher.
+ * <p>
+ * Simula fluxos de interação com a biblioteca do usuário, cobrindo:
+ * <ul>
+ *   <li>Compra de jogos com validação de saldo e tratamento de {@link SaldoInsuficienteException};</li>
+ *   <li>Tentativa de execução de jogos instalados e não instalados com tratamento de {@link JogoNaoInstaladoException};</li>
+ *   <li>Desbloqueio de conquistas e garantia de unicidade via conjunto (Set);</li>
+ *   <li>Registro ordenado de sessões no histórico de jogos;</li>
+ *   <li>Uso de blocos {@code finally} simulando rotinas de sincronização em nuvem.</li>
+ * </ul>
+ * </p>
+ *
+ * @author Henrique Gabriel Barbosa
+ * @version 1.0
+ * @see BibliotecaUsuario
+ * @see Jogo
+ */
+public class LauncherMain {
+
+    /**
+     * Construtor padrão da classe LauncherMain.
+     */
+    public LauncherMain() {
+        // Construtor explícito para documentação Javadoc
+    }
+
+    /**
+     * Método principal que inicializa e executa a simulação do lançador de jogos.
+     *
+     * @param args argumentos de linha de comando passados durante a execução (não utilizados)
+     */
+    public static void main(String[] args) {
+        System.out.println("=============================================================");
+        System.out.println("       GAME LAUNCHER - Prototipo de Biblioteca Digital       ");
+        System.out.println("=============================================================");
+        System.out.println();
+
+        BibliotecaUsuario biblioteca = new BibliotecaUsuario("Henrique", 150);
+        System.out.printf("Usuario: %s | Saldo inicial: R$%.2f%n", biblioteca.getNomeUsuario(), biblioteca.getSaldo());
+        System.out.println();
+
+        Jogo cyberpunk = new Jogo("CP2077", "Cyberpunk 2077", 59.99, false);
+        Jogo eldenRing = new Jogo("ER2022", "Elden Ring", 99.90, true);
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("CENARIO 1: Compra de jogos");
+        System.out.println("------------------------------------------------------------");
+        try {
+            biblioteca.comprarJogo(cyberpunk);
+            biblioteca.comprarJogo(eldenRing);
+        } catch (SaldoInsuficienteException e) {
+            System.out.println("[ERRO] " + e.getMessage());
+            System.out.println("[INFO] Recarregue sua carteira para continuar comprando.");
+        }
+
+        System.out.println();
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("CENARIO 2: Jogar sem instalar");
+        System.out.println("------------------------------------------------------------");
+        biblioteca.getCatalogosJogos().put(eldenRing.getId(), eldenRing);
+        try {
+            biblioteca.jogar("ER2022");
+            biblioteca.jogar("CP2077");
+        } catch (JogoNaoInstaladoException e) {
+            System.out.println("[ERRO] " + e.getMessage());
+            System.out.println("[RECUPERACAO] Iniciando download automatico...");
+            biblioteca.baixarJogo("CP2077");
+            try {
+                biblioteca.jogar("CP2077");
+            } catch (JogoNaoInstaladoException e2) {
+                System.out.println("[ERRO CRITICO] Falha mesmo apos download: " + e2.getMessage());
+            }
+        } finally {
+            System.out.println();
+            System.out.println("[FINALLY] Encerrando conexao com servidores Cloud Save...");
+            System.out.println("[FINALLY] Status do usuario salvo com sucesso.");
+            System.out.println("[FINALLY] Conexao encerrada.");
+        }
+        System.out.println();
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("CENARIO 3: Conquistas");
+        System.out.println("------------------------------------------------------------");
+
+        biblioteca.ganharConquitas("Primeira Vitoria");
+        biblioteca.ganharConquitas("Explorador de Mundos");
+        biblioteca.ganharConquitas("Primeira Vitoria");
+        biblioteca.ganharConquitas("Caçador de Trofeus");
+        biblioteca.ganharConquitas("Explorador de Mundos");
+
+        System.out.println();
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("CENARIO 4: Historico de jogos");
+        System.out.println("------------------------------------------------------------");
+        try {
+            biblioteca.jogar("ER2022");
+            biblioteca.jogar("CP2077");
+        } catch (JogoNaoInstaladoException e) {
+            System.out.println("[ERRO] " + e.getMessage());
+        } finally {
+            System.out.println();
+            System.out.println("[FINALLY] Sincronizando progresso com Cloud Save...");
+            System.out.println("[FINALLY] Progresso sincronizado.");
+        }
+        System.out.println();
+        System.out.println("Historico de jogos abertos (ordem cronologica):");
+        for (int i = 0; i < biblioteca.getHistoricoJogados().size(); i++) {
+            System.out.printf("  %d. %s%n", i + 1, biblioteca.getHistoricoJogados().get(i).getTitulo());
+        }
+
+        System.out.println();
+        System.out.println("=============================================================");
+        System.out.println("                      RESUMO FINAL                          ");
+        System.out.println("=============================================================");
+        System.out.printf("Usuario: %s%n", biblioteca.getNomeUsuario());
+        System.out.printf("Saldo restante: R$%.2f%n", biblioteca.getSaldo());
+        System.out.printf("Jogos no catalogo: %d%n", biblioteca.getCatalogosJogos().size());
+        System.out.printf("Sessões jogadas: %d%n", biblioteca.getHistoricoJogados().size());
+        System.out.printf("Conquistas unicas: %s%n", biblioteca.getConquistasDesbloqueadas());
+        System.out.println("=============================================================");
+
+    }
+}
